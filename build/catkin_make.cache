@@ -1,0 +1,2 @@
+beginner_tutorials:detection_msgs:dlib_detector:evaluation_tasks:exercise3:exercise4:exercise6:opencv_detector:recognition_msgs
+-DCATKIN_DEVEL_PREFIX=/home/odroid/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/odroid/catkin_ws/install -G Unix Makefiles

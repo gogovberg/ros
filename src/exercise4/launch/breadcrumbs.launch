@@ -1,0 +1,7 @@
+<launch>
+
+  <node pkg="breadcrumbs" type="breadcrumbs" name="breadcrumbs" output="screen">
+    <param name="rate" type="double" value="1" />
+  </node>
+
+</launch>

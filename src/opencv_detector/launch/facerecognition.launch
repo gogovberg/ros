@@ -1,0 +1,14 @@
+<launch>
+	<!--<include file="$(find turtlebot_navigation)/launch/amcl_demo.launch" />-->
+	
+ <!-- <include file="$(find freenect_launch)/launch/freenect.launch" />-->
+  
+  <include file="$(find opencv_detector)/launch/facedetector.launch">
+	<arg name="image_topic" value="/camera/rgb/image_raw" />
+  </include>
+  
+  <node pkg="opencv_detector" type="face_recognizer" name="face_recognizer" output="screen">
+	<param name="base_source" value="$(find opencv_detector)/data/face_data.csv" />
+  </node>
+
+</launch>

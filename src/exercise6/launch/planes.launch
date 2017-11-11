@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+
+    <node pkg="exercise6" type="planes" name="planes" output="screen">
+
+        <remap from="input" to="/camera/depth_registered/points"/>
+        <remap from="planes" to="/pcl_demos/planes"/>
+
+    </node>
+
+</launch>

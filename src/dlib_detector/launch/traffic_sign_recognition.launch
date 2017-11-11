@@ -1,0 +1,8 @@
+<launch>
+	<include file="$(find dlib_detector)/launch/traffic_sign_detector_camera.launch" />
+  <node pkg="dlib_detector" type="traffic_sign_listener" name="traffic_sign_listener" output="screen">
+  	<param name="base_source" value="$(find dlib_detector)/data/traffic_sign_data.csv" />
+  	<param name="hist_num" value="3" />
+  </node>
+
+</launch>

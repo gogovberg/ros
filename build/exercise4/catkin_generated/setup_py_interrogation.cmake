@@ -1,0 +1,6 @@
+set(exercise4_SETUP_PY_VERSION "0.0.0")
+set(exercise4_SETUP_PY_SCRIPTS "")
+set(exercise4_SETUP_PY_PACKAGES "")
+set(exercise4_SETUP_PY_PACKAGE_DIRS "src")
+set(exercise4_SETUP_PY_MODULES "")
+set(exercise4_SETUP_PY_MODULE_DIRS "")

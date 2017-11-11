@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/odroid/catkin_ws/src/opencv_detector/src/face_detector.cpp
+ros/ros.h
+/home/odroid/catkin_ws/src/opencv_detector/src/ros/ros.h
+std_msgs/String.h
+/home/odroid/catkin_ws/src/opencv_detector/src/std_msgs/String.h
+sensor_msgs/Image.h
+/home/odroid/catkin_ws/src/opencv_detector/src/sensor_msgs/Image.h
+image_transport/image_transport.h
+-
+cv_bridge/cv_bridge.h
+-
+sensor_msgs/image_encodings.h
+-
+opencv2/imgproc/imgproc.hpp
+-
+opencv2/highgui/highgui.hpp
+-
+opencv2/objdetect/objdetect.hpp
+-
+detection_msgs/Detection.h
+-
+iostream
+-
+stdio.h
+-
+

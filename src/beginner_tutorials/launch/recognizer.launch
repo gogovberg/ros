@@ -1,0 +1,8 @@
+<launch>
+  <include file="$(find freenect_launch)/launch/freenect.launch" />
+  <node pkg="beginner_tutorials" type="listener" name="listener" output="screen">
+    <remap from="camera" to="/camera/rgb/image_raw" />
+    <param name="detector_file" value="$(find beginner_tutorials)/data/haarcascade_face.xml"/>
+    <param name="show_cv_window" type="bool" value="true" />
+  </node>
+</launch>

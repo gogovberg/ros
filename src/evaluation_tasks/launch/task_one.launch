@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="evaluation_tasks" type="cliff_listener" name="cliff_listener" output="screen">
+    </node>
+</launch>
+

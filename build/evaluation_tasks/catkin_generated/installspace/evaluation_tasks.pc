@@ -1,0 +1,8 @@
+prefix=/home/odroid/catkin_ws/install
+
+Name: evaluation_tasks
+Description: Description of evaluation_tasks
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/odroid/catkin_ws/install/lib 
+Requires: 
