@@ -11,7 +11,7 @@
 using namespace std;
 
 ros::Publisher pub;
-
+geometry_msgs::Twist base_cmd;
 void callbackCliff(const create_node::TurtlebotSensorState& cliff_msg)
 { 
   
@@ -20,7 +20,7 @@ void callbackCliff(const create_node::TurtlebotSensorState& cliff_msg)
   
       ROS_INFO("Cliff front left signal: %d",cliff_msg.cliff_front_left_signal);
       ROS_INFO("Cliff front right signal: %d",cliff_msg.cliff_front_right_signal);
-      geometry_msgs::Twist base_cmd;
+
       base_cmd.linear.y = 0;
       base_cmd.linear.z = 0;
       base_cmd.angular.x = 0;
@@ -47,6 +47,11 @@ int main (int argc, char** argv) {
   ros::Subscriber sub = nh.subscribe ("/mobile_base/sensors/core", 1, callbackCliff);
   ros::Publisher pub = nh.advertise<geometry_msgs::Twist>("/cmd_vel_mux/input/teleop", 1);
   // Spin
-  ros::spin ();
+ while(ros::ok){
+    pub.publish(base_cmd);
+    ros::spinOnce();
+    }
+ //ros::spin();
+ return 0;
 }
 
