@@ -1,0 +1,8 @@
+<launch>
+
+  <node pkg="evaluation_tasks" type="new_goals" name="new_goals" output="screen">
+      <remap from="goal" to="/move_base_simple/goal" />
+  </node>
+
+</launch>
+
