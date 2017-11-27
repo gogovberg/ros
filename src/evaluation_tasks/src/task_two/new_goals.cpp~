@@ -77,12 +77,10 @@ void baseStatusCallback(const actionlib_msgs::GoalStatusArray::ConstPtr &msg)
 	bool hasActiveGoal = false;
     for (int i=0; i<msg->status_list.size(); i++)
     {
-    	ROS_INFO("goal status: %d",msg->status_list[i].status);
-        if (msg->status_list[i].status == msg->status_list[i].PENDING || msg->status_list[i].status == msg->status_list[i].ACTIVE || msg->status_list[i].status == msg->status_list[i].RECALLING || msg->status_list[i].status == msg->status_list[i].PREEMPTING)
+    	//ROS_INFO("goal status: %d",msg->status_list[i].status);
+        if (msg->status_list[i].status != msg->status_list[i].SUCCEEDED)
         {
             hasActiveGoal = true;
-            
-            // DEBUG_PRINT("hasActiveGoal == true");
         }
     }
     if (!hasActiveGoal && !isStart)
@@ -137,20 +135,32 @@ void initGoals()
 	geometry_msgs::PoseStamped goal1;
 	goal1.header.frame_id = "map";
 	goal1.pose.orientation.w = 1;
-	goal1.pose.position.x = 0.500000;
-	goal1.pose.position.y = 0.250000;
+	goal1.pose.position.x = 0.000000;
+	goal1.pose.position.y = -0.700000;
 	
 	geometry_msgs::PoseStamped goal2;
 	goal2.header.frame_id = "map";
 	goal2.pose.orientation.w = 1;
-	goal2.pose.position.x =-2.100000;
-	goal2.pose.position.y = 0.700000;
+	goal2.pose.position.x = 0.250000;
+	goal2.pose.position.y = 0.800000;
 	
 	geometry_msgs::PoseStamped goal3;
 	goal3.header.frame_id = "map";
 	goal3.pose.orientation.w = 1;
 	goal3.pose.position.x = 0.250000;
 	goal3.pose.position.y = -0.700000;
+	
+	geometry_msgs::PoseStamped goal4;
+	goal4.header.frame_id = "map";
+	goal4.pose.orientation.w = 1;
+	goal4.pose.position.x = -2.100000;
+	goal4.pose.position.y = 0.650000;
+	
+	geometry_msgs::PoseStamped goal5;
+	goal5.header.frame_id = "map";
+	goal5.pose.orientation.w = 1;
+	goal5.pose.position.x = 0.150000;
+	goal5.pose.position.y = 0.800000;
 	
 	goalQeue.push(goal1);
 	goalQeue.push(goal2);
