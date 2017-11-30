@@ -103,26 +103,26 @@ void mouseCallback(int event, int x, int y, int, void* data) {
 
     if( event != EVENT_LBUTTONDOWN || cv_map.empty())
         return;
-/*
+
     int v = (int)cv_map.at<unsigned char>(y, x);
 
 	if (v != 255) {
 		ROS_WARN("Unable to move to (x: %d, y: %d), not reachable", x, y);
 		return;
 	}
-*/
+
     ROS_INFO("Moving to (x: %d, y: %d)", x, y);
 
 	tf::Point pt((float)x * map_resolution, (float)y * map_resolution, 0.0);
 	tf::Point transformed = map_transform * pt;
 
-	 ROS_INFO("Imaginary goal pose (x: %f, y: %f)", transformed.x(), transformed.y());
-
 	geometry_msgs::PoseStamped goal;
 	goal.header.frame_id = "map";
 	goal.pose.orientation.w = 1;
-	goal.pose.position.x = -1.000000;
-	goal.pose.position.y = -0.250000;
+	goal.pose.position.x = 2.950000;
+	goal.pose.position.y = 0.850000;
+	//goal.pose.position.x = transformed.x();
+	//goal.pose.position.y = -transformed.y();
 	goal.header.stamp = ros::Time::now();
 	isStart=false;	
 	
@@ -135,38 +135,52 @@ void initGoals()
 	geometry_msgs::PoseStamped goal1;
 	goal1.header.frame_id = "map";
 	goal1.pose.orientation.w = 1;
-	goal1.pose.position.x = 0.000000;
-	goal1.pose.position.y = -0.700000;
+	goal1.pose.position.x =  1.190000;
+	goal1.pose.position.y = -0.350000;
 	
 	geometry_msgs::PoseStamped goal2;
 	goal2.header.frame_id = "map";
 	goal2.pose.orientation.w = 1;
-	goal2.pose.position.x = 0.250000;
-	goal2.pose.position.y = 0.800000;
+	goal2.pose.position.x = 3.050000;
+	goal2.pose.position.y = 0.700000;
 	
 	geometry_msgs::PoseStamped goal3;
 	goal3.header.frame_id = "map";
 	goal3.pose.orientation.w = 1;
-	goal3.pose.position.x = 0.250000;
-	goal3.pose.position.y = -0.700000;
+	goal3.pose.position.x =  3.050000;
+	goal3.pose.position.y = -1.500000;
 	
 	geometry_msgs::PoseStamped goal4;
 	goal4.header.frame_id = "map";
 	goal4.pose.orientation.w = 1;
-	goal4.pose.position.x = -2.100000;
-	goal4.pose.position.y = 0.650000;
+	goal4.pose.position.x = 1.600000;
+	goal4.pose.position.y = 0.700000;
 	
 	geometry_msgs::PoseStamped goal5;
 	goal5.header.frame_id = "map";
 	goal5.pose.orientation.w = 1;
-	goal5.pose.position.x = 0.150000;
-	goal5.pose.position.y = 0.800000;
+	goal5.pose.position.x =  2.850000;
+	goal5.pose.position.y = -0.850000;
+
+	geometry_msgs::PoseStamped goal6;
+	goal6.header.frame_id = "map";
+	goal6.pose.orientation.w = 1;
+	goal6.pose.position.x =  1.550000;
+	goal6.pose.position.y = -1.550000;
 	
-	goalQeue.push(goal1);
-	goalQeue.push(goal2);
+	geometry_msgs::PoseStamped goal7;
+	goal7.header.frame_id = "map";
+	goal7.pose.orientation.w = 1;
+	goal7.pose.position.x =  2.950000;
+	goal7.pose.position.y =  0.850000;
+	
+	//goalQeue.push(goal1);
+	//goalQeue.push(goal2);
 	goalQeue.push(goal3);
 	goalQeue.push(goal4);
 	goalQeue.push(goal5);
+	goalQeue.push(goal6);
+	goalQeue.push(goal7);
 }
 int main(int argc, char** argv) {
 
