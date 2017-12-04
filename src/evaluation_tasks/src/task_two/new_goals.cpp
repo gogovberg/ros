@@ -1,5 +1,4 @@
 #include "ros/ros.h"
-
 #include <nav_msgs/GetMap.h>
 #include <geometry_msgs/Quaternion.h>
 #include <geometry_msgs/PoseStamped.h>
@@ -9,6 +8,8 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <queue>
+#include <iostream>
+#include <fstream>
 
 using namespace std;
 using namespace cv;
@@ -21,6 +22,11 @@ ros::Publisher goal_pub;
 ros::Subscriber map_sub;
 ros::Subscriber baseStatus_sub;
 bool isStart=true;
+ofstream myfile;
+
+clock_t begin_time;
+
+
 void mapCallback(const nav_msgs::OccupancyGridConstPtr& msg_map) {
     int size_x = msg_map->info.width;
     int size_y = msg_map->info.height;
@@ -85,6 +91,13 @@ void baseStatusCallback(const actionlib_msgs::GoalStatusArray::ConstPtr &msg)
     }
     if (!hasActiveGoal && !isStart)
     {
+    	 if(myfile.is_open())
+	     {
+	        ROS_INFO("Writing time to file.");
+	        //string result = std::to_string(;
+	        myfile << float( clock () - begin_time ) /  CLOCKS_PER_SEC << endl;
+	        myfile.close();
+	     }
 		if(!goalQeue.empty() )
 		{
 			geometry_msgs::PoseStamped goal;
@@ -93,6 +106,10 @@ void baseStatusCallback(const actionlib_msgs::GoalStatusArray::ConstPtr &msg)
 		    ROS_INFO("Moving to goal pose (x: %f, y: %f)", goal.pose.position.x, goal.pose.position.y);
 			goal_pub.publish(goal);
 			goalQeue.pop();
+			myfile.open ("/home/odroid/catkin_ws/src/evaluation_tasks/Time.txt", ios::out | ios::binary | ios::app);
+			myfile << "NEW ITERATION"<< endl;
+			begin_time = clock();
+			
 		}
 		
     }
@@ -195,6 +212,10 @@ int main(int argc, char** argv) {
 
     setMouseCallback("Map", mouseCallback, NULL);
 
+	myfile.open ("/home/odroid/catkin_ws/src/evaluation_tasks/Time.txt", ios::out | ios::binary | ios::app);
+	myfile << "NEW ITERATION"<< endl;
+	myfile.close();
+	
     while(ros::ok()) {
 
         if (!cv_map.empty()) imshow("Map", cv_map);
