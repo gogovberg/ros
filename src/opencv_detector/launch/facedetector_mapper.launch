@@ -1,0 +1,15 @@
+<launch>
+
+  <include file="$(find opencv_detector)/launch/facedetector_kinect.launch" />
+
+  <include file="$(find opencv_detector)/launch/face_recognizer.launch"/>
+
+  <include file="$(find localizer)/launch/localizer_node.launch" />
+
+  <node pkg="localizer" type="mapper" name="facemapper" output="screen">
+    <remap from="camera_info" to="/camera/rgb/camera_info" />
+    <remap from="mapper" to="/facedetector/markers" />
+  </node>
+
+  
+</launch>
