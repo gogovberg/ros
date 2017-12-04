@@ -59,13 +59,14 @@ class DetectionMapper():
             marker.header.stamp = detection.header.stamp
             marker.header.frame_id = detection.header.frame_id
             marker.pose = localization.pose
-            marker.type = Marker.CUBE
+            marker.type = Marker.TEXT_VIEW_FACING
             marker.action = Marker.ADD
             marker.frame_locked = False
             marker.lifetime = rospy.Duration.from_sec(1)
             marker.id = self.marker_id_counter
             marker.scale = Vector3(0.1, 0.1, 0.1)
             marker.color = ColorRGBA(1, 0, 0, 1)
+            marker.text = detection.label
             self.markers.markers.append(marker)
             self.marker_id_counter += 1
             tf_pose = Pose(marker.pose.position,marker.pose.orientation)
