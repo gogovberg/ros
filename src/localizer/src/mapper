@@ -2,7 +2,6 @@
 import roslib
 from tf import *
 roslib.load_manifest('localizer')
-
 import rospy
 import sys, select, termios, tty
 from std_msgs.msg import String, Bool, ColorRGBA
@@ -19,7 +18,6 @@ import actionlib
 from actionlib_msgs.msg import *
 from geometry_msgs.msg import *
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
-from sound_play.libsoundplay import SoundClient
 
 class DetectionMapper():
 
@@ -28,16 +26,12 @@ class DetectionMapper():
 
     def detections_callback(self, detection):
 
-        self.tf = TransformListener()
         now = rospy.Time(0)
-        
-
         u = detection.x + detection.width / 2
         v = detection.y + detection.height / 2
 
         camera_info = None
         best_time = 100
-        print(len(self.camera_infos))
         for ci in self.camera_infos:
             time = abs(ci.header.stamp.to_sec() - detection.header.stamp.to_sec())
             if time < best_time:
@@ -59,7 +53,6 @@ class DetectionMapper():
             return
 
         if self.tf.frameExists("/base_link") and self.tf.frameExists("/map"):
-           
             self.tf.waitForTransform("/base_link","/map",now, rospy.Duration(6.0))
             position, quaternion = self.tf.lookupTransform("/base_link", "/map",now )
             marker = Marker()
@@ -81,16 +74,18 @@ class DetectionMapper():
             gb_pose = self.tf.transformPose("/map",tf_stamped_pose)
             print(gb_pose)
 
+
     def flush(self):
-        if not self.markers.markers or len(self.markers.markers) == 0:
+        if not self.markers.markers:
             self.markers = MarkerArray()
             return
         self.markers_pub.publish(self.markers)
-        self.markers = MarkerArray()
 
     def __init__(self):
 
-        self.marker_id_counter = 0 
+        self.tf = TransformListener()
+        self.markers = MarkerArray()
+        self.marker_id_counter = 0
         self.region_scope = rospy.get_param('~region', 3)
         self.buffer_size = rospy.get_param('~camera_buffer_size', 50)
         rospy.wait_for_service('localizer/localize')
@@ -98,16 +93,17 @@ class DetectionMapper():
         self.camera_infos = collections.deque(maxlen = self.buffer_size)
         self.detections_sub = message_filters.Subscriber('/recognition/faces', Detection)
         self.detections_sub.registerCallback(self.detections_callback)
+
         self.camera_sub = message_filters.Subscriber('camera_info', CameraInfo)
-        self.camera_sub.registerCallback( self.camera_callback)
+        self.camera_sub.registerCallback(self.camera_callback)
 
         self.localize = rospy.ServiceProxy('localizer/localize', Localize)
         self.markers_pub = rospy.Publisher('markers', MarkerArray)
-        self.markers = MarkerArray()
    
 if __name__ == '__main__':
 
-        rospy.init_node('localizer')
+        rospy.init_node('mapper')
+
         try:
             mapper = DetectionMapper()
             r = rospy.Rate(30)
@@ -115,3 +111,4 @@ if __name__ == '__main__':
                 mapper.flush()
                 r.sleep()
         except rospy.ROSInterruptException: pass
+
