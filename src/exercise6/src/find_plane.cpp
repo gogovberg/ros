@@ -46,14 +46,14 @@ ros::Publisher pub_cylinders;
 ros::Publisher pub_above_plane;
 ros::Publisher pub_ground_plane;
 ofstream myfile;
-
+clock_t begin_time 
 
 void callbackCylinder(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
 { 
   
   try
     {
-      myfile.open ("/home/odroid/catkin_ws/src/exercise6/src/Time.txt", ios::out | ios::binary | ios::app);
+      
       const clock_t begin_time = clock();
       // Container for original & filtered data
       boost::shared_ptr<pcl::PCLPointCloud2> cloud(new pcl::PCLPointCloud2);

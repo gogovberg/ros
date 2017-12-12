@@ -18,6 +18,7 @@ import actionlib
 from actionlib_msgs.msg import *
 from geometry_msgs.msg import *
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
+from threading import Thread, Lock
 
 class DetectionMapper():
 
@@ -32,11 +33,14 @@ class DetectionMapper():
 
         camera_info = None
         best_time = 100
+
+        self.mutex.acquire()
         for ci in self.camera_infos:
             time = abs(ci.header.stamp.to_sec() - detection.header.stamp.to_sec())
             if time < best_time:
                 camera_info = ci
                 best_time = time
+        self.mutex.release()
 
         if not camera_info or best_time > 1:
             return
@@ -83,7 +87,7 @@ class DetectionMapper():
         self.markers_pub.publish(self.markers)
 
     def __init__(self):
-
+        self.mutex = Lock()
         self.tf = TransformListener()
         self.markers = MarkerArray()
         self.marker_id_counter = 0
