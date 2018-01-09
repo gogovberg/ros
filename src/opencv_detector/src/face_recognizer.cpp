@@ -42,7 +42,7 @@ cv::vector<int> labels;
 
 ros::Publisher pub;
 ros::Publisher pub_markers;
-
+ofstream myfile;
 
 static void read_csv(const string& filename, cv::vector<Mat>& images, cv::vector<int>& labels, char separator = ';') {
     std::ifstream file(filename.c_str(), ifstream::in);
@@ -66,31 +66,31 @@ string DetectionLabel(int predictedLabel)
         switch(predictedLabel)
         {
             case 0:
-                label = "tina";
-                break;
-            case 1:
-                label = "harry";
-                break;
-            case 2:
-                label = "kim";
-                break;
-            case 3:
-                label = "forest";
-                break;
-            case 4:
-                label = "filip";
-                break;
-            case 5:
                 label = "peter";
                 break;
+            case 1:
+                label = "hellen";
+                break;
+            case 2:
+                label = "scarlet";
+                break;
+            case 3:
+                label = "filip";
+                break;
+            case 4:
+                label = "forest";
+                break;
+            case 5:
+                label = "tina";
+                break;
             case 6:
-                label = "ellen";
+                label = "matthew";
 		        break;
     	    case 7:
-    		label = "metthew";
+    		label = "harry";
                     break;
     	    case 8:
-    		label = "scarlett";
+    		label = "kim";
                     break;
             default:
                 label="unknown";
@@ -131,7 +131,8 @@ void FacesCallback(const detection_msgs::Detection::ConstPtr &msg)
 {   
 	try
 	{
-		
+		myfile.open ("/home/odroid/catkin_ws/src/opencv_detector/src/Time.txt", ios::out | ios::binary | ios::app);
+        	const clock_t begin_time = clock();
 		Mat gray_detection;
 		Size size(100,100);
 		Mat resized_image;
@@ -178,6 +179,14 @@ void FacesCallback(const detection_msgs::Detection::ConstPtr &msg)
 
 		//ROS_INFO("I heard: x:[%d] y:[%d] label:[%s]", face_rec.x,face_rec.y,face_rec.label.c_str());
 		pub.publish(face_rec);
+		if(myfile.is_open())
+	        {
+           		 ROS_INFO("Writing time to file.");
+            		//string result = std::to_string(;
+            		myfile << float( clock () - begin_time ) /  CLOCKS_PER_SEC << endl;
+            		myfile.close();
+        	}
+
 	} catch (cv::Exception& e) {
 
         ROS_ERROR("Exception: %s \n Line number: %d",e.what(), e.line);
