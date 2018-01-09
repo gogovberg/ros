@@ -41,6 +41,7 @@ typedef pcl::PointXYZ PointT;
 typedef pcl::PointCloud<PointT> CloudT;
 
 double downsample_leaf_size;
+string path;
 
 ros::Publisher pub_cylinders;
 
@@ -52,7 +53,7 @@ void callbackCylinder(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
   
   try
     {
-      myfile.open ("/home/odroid/catkin_ws/src/exercise6/src/CylinderTime.txt", ios::out | ios::binary | ios::app);
+      myfile.open (path.c_str(), ios::out | ios::binary | ios::app);
       const clock_t begin_time = clock();
 	  
       // Container for original & filtered data
@@ -92,12 +93,12 @@ void callbackCylinder(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
       pcl::PointCloud<pcl::Normal>::Ptr cloud_normals (new pcl::PointCloud<pcl::Normal>);
       pcl::PointCloud<pcl::Normal>::Ptr cloud_normals2 (new pcl::PointCloud<pcl::Normal>);
       pcl::search::KdTree<pcl::PointXYZRGB>::Ptr tree (new pcl::search::KdTree<pcl::PointXYZRGB> ());
-	  pcl::ModelCoefficients::Ptr coefficients_cylinder (new pcl::ModelCoefficients);
+	    pcl::ModelCoefficients::Ptr coefficients_cylinder (new pcl::ModelCoefficients);
       pcl::PointIndices::Ptr inliers_cylinder (new pcl::PointIndices);
      
-	  pcl::PointCloud<pcl::PointXYZRGB>::Ptr cylinder_outliers (new pcl::PointCloud<pcl::PointXYZRGB>);
+	    pcl::PointCloud<pcl::PointXYZRGB>::Ptr cylinder_outliers (new pcl::PointCloud<pcl::PointXYZRGB>);
       
-	  pcl::fromPCLPointCloud2(*temp, *aboveCloudPtr);
+	    pcl::fromPCLPointCloud2(*temp, *aboveCloudPtr);
 
       ne.setSearchMethod (tree);
       ne.setInputCloud (aboveCloudPtr);
@@ -105,7 +106,7 @@ void callbackCylinder(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
       ne.compute (*cloud_normals);
 	  
       ROS_INFO("Start segmentation");
-	  pcl::SACSegmentationFromNormals<pcl::PointXYZRGB, pcl::Normal> seg;
+	    pcl::SACSegmentationFromNormals<pcl::PointXYZRGB, pcl::Normal> seg;
       seg.setOptimizeCoefficients (true);
       seg.setModelType (pcl::SACMODEL_CYLINDER);
       seg.setMethodType (pcl::SAC_RANSAC);
@@ -115,11 +116,12 @@ void callbackCylinder(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
       seg.setInputCloud (aboveCloudPtr);
       seg.setInputNormals (cloud_normals);
       seg.segment (*inliers_cylinder, *coefficients_cylinder);
-      ROS_INFO(" Extract");
 
+      ROS_INFO(" Extract");
       pcl::ExtractIndices<pcl::PointXYZRGB> extract;
       pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_cylinder (new pcl::PointCloud<pcl::PointXYZRGB>);
-      extract.setInputCloud (objectpointsPtr);
+
+      extract.setInputCloud (aboveCloudPtr);
       extract.setIndices (inliers_cylinder);
       extract.setNegative (false);
       extract.filter (*cloud_cylinder);
@@ -158,11 +160,15 @@ int main (int argc, char** argv) {
   // Initialize ROS
   ros::init (argc, argv, "find_cylinder");
   ros::NodeHandle nh;
- 
   
   downsample_leaf_size = 0.01; // 1cm
+  path = "/home/team_lambda/catkin_ws/src/exercise6/cylinderTime.txt";
+
   nh.getParam("downsample_leaf_size", downsample_leaf_size);
+  nh.getParam("/find_cylinder/file_path",path);
+
   ROS_INFO_STREAM("obstacle detection: using a leaf size of '" << downsample_leaf_size << "' m for downsampling.");
+  ROS_INFO_STREAM("File path for writing time elapsed " << path);
   // Create a ROS subscriber for the input point cloud
   ros::Subscriber sub = nh.subscribe ("above_plane", 1, callbackCylinder);
 

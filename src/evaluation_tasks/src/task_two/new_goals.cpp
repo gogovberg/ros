@@ -10,6 +10,8 @@
 #include <queue>
 #include <iostream>
 #include <fstream>
+#include <time.h>
+#include <stdio.h>
 
 using namespace std;
 using namespace cv;
@@ -25,6 +27,7 @@ bool isStart=true;
 ofstream myfile;
 
 clock_t begin_time;
+time_t start,end;
 
 
 void mapCallback(const nav_msgs::OccupancyGridConstPtr& msg_map) {
@@ -94,8 +97,9 @@ void baseStatusCallback(const actionlib_msgs::GoalStatusArray::ConstPtr &msg)
     	 if(myfile.is_open())
 	     {
 	        ROS_INFO("Writing time to file.");
-	        //string result = std::to_string(;
-	        myfile << float( clock () - begin_time ) /  CLOCKS_PER_SEC << endl;
+	        time_t end;
+	        time (&end);
+	        myfile << difftime (end,start) << endl;
 	        myfile.close();
 	     }
 		if(!goalQeue.empty() )
@@ -106,12 +110,11 @@ void baseStatusCallback(const actionlib_msgs::GoalStatusArray::ConstPtr &msg)
 		    ROS_INFO("Moving to goal pose (x: %f, y: %f)", goal.pose.position.x, goal.pose.position.y);
 			goal_pub.publish(goal);
 			goalQeue.pop();
-			myfile.open ("/home/odroid/catkin_ws/src/evaluation_tasks/Time.txt", ios::out | ios::binary | ios::app);
-			myfile << "NEW ITERATION"<< endl;
-			begin_time = clock();
-			
+			if(!myfile.is_open())
+			{
+				myfile.open ("/home/team_lambda/catkin_ws/src/evaluation_tasks/Time.txt", ios::out | ios::binary | ios::app);
+			}
 		}
-		
     }
 
 }
@@ -137,13 +140,19 @@ void mouseCallback(int event, int x, int y, int, void* data) {
 	goal.header.frame_id = "map";
 	goal.pose.orientation.w = 1;
 	goal.pose.position.x = 2.950000;
-	goal.pose.position.y = 0.850000;
+	goal.pose.position.y = 0.600000;
 	//goal.pose.position.x = transformed.x();
 	//goal.pose.position.y = -transformed.y();
 	goal.header.stamp = ros::Time::now();
 	isStart=false;	
 	
 	 ROS_INFO("Moving to goal pose (x: %f, y: %f)", goal.pose.position.x, goal.pose.position.y);
+
+	 if(!myfile.is_open())
+	 {
+		myfile.open ("/home/team_lambda/catkin_ws/src/evaluation_tasks/Time.txt", ios::out | ios::binary | ios::app);
+		time (&start);
+	 }
 
 	goal_pub.publish(goal);
 }
@@ -170,7 +179,7 @@ void initGoals()
 	geometry_msgs::PoseStamped goal4;
 	goal4.header.frame_id = "map";
 	goal4.pose.orientation.w = 1;
-	goal4.pose.position.x = 1.600000;
+	goal4.pose.position.x = 1.550000;
 	goal4.pose.position.y = 0.700000;
 	
 	geometry_msgs::PoseStamped goal5;
@@ -189,7 +198,7 @@ void initGoals()
 	goal7.header.frame_id = "map";
 	goal7.pose.orientation.w = 1;
 	goal7.pose.position.x =  2.950000;
-	goal7.pose.position.y =  0.850000;
+	goal7.pose.position.y =  0.600000;
 	
 	//goalQeue.push(goal1);
 	//goalQeue.push(goal2);
@@ -212,10 +221,10 @@ int main(int argc, char** argv) {
 
     setMouseCallback("Map", mouseCallback, NULL);
 
-	myfile.open ("/home/odroid/catkin_ws/src/evaluation_tasks/Time.txt", ios::out | ios::binary | ios::app);
+	myfile.open ("/home/team_lambda/catkin_ws/src/evaluation_tasks/Time.txt", ios::out | ios::binary | ios::app);
 	myfile << "NEW ITERATION"<< endl;
 	myfile.close();
-	
+    begin_time = clock();
     while(ros::ok()) {
 
         if (!cv_map.empty()) imshow("Map", cv_map);

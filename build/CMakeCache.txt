@@ -827,6 +827,9 @@ dlib_detector_SOURCE_DIR:STATIC=/home/odroid/catkin_ws/src/dlib_detector
 //The directory containing a CMake configuration file for dynamic_reconfigure.
 dynamic_reconfigure_DIR:PATH=/opt/ros/indigo/share/dynamic_reconfigure/cmake
 
+//The directory containing a CMake configuration file for eigen_conversions.
+eigen_conversions_DIR:PATH=/opt/ros/indigo/share/eigen_conversions/cmake
+
 //Value Computed by CMake
 evaluation_tasks_BINARY_DIR:STATIC=/home/odroid/catkin_ws/build/evaluation_tasks
 
@@ -905,6 +908,15 @@ lapack_lib:FILEPATH=lapack_lib-NOTFOUND
 
 //Path to a library.
 lib:FILEPATH=/opt/ros/indigo/lib/libtopic_tools.so
+
+//Value Computed by CMake
+localizer_BINARY_DIR:STATIC=/home/odroid/catkin_ws/build/localizer
+
+//Dependencies for the target
+localizer_LIB_DEPENDS:STATIC=general;/opt/ros/indigo/lib/libnodeletlib.so;general;/opt/ros/indigo/lib/libbondcpp.so;general;/usr/lib/arm-linux-gnueabihf/libuuid.so;general;/opt/ros/indigo/lib/libclass_loader.so;general;/usr/lib/libPocoFoundation.so;general;/usr/lib/arm-linux-gnueabihf/libdl.so;general;/opt/ros/indigo/lib/libroslib.so;general;/opt/ros/indigo/lib/librospack.so;general;/usr/lib/arm-linux-gnueabihf/libpython2.7.so;general;/usr/lib/arm-linux-gnueabihf/libboost_program_options.so;general;/usr/lib/arm-linux-gnueabihf/libtinyxml.so;general;/opt/ros/indigo/lib/libtf.so;general;/opt/ros/indigo/lib/libtf2_ros.so;general;/opt/ros/indigo/lib/libactionlib.so;general;/opt/ros/indigo/lib/libmessage_filters.so;general;/opt/ros/indigo/lib/libroscpp.so;general;/usr/lib/arm-linux-gnueabihf/libboost_signals.so;general;/usr/lib/arm-linux-gnueabihf/libboost_filesystem.so;general;/opt/ros/indigo/lib/libxmlrpcpp.so;general;/opt/ros/indigo/lib/libtf2.so;general;/opt/ros/indigo/lib/librosconsole.so;general;/opt/ros/indigo/lib/librosconsole_log4cxx.so;general;/opt/ros/indigo/lib/librosconsole_backend_interface.so;general;/usr/lib/liblog4cxx.so;general;/usr/lib/arm-linux-gnueabihf/libboost_regex.so;general;/opt/ros/indigo/lib/libimage_geometry.so;general;/usr/lib/arm-linux-gnueabihf/libopencv_videostab.so.2.4.8;general;/usr/lib/arm-linux-gnueabihf/libopencv_video.so.2.4.8;general;/usr/lib/arm-linux-gnueabihf/libopencv_superres.so.2.4.8;general;/usr/lib/arm-linux-gnueabihf/libopencv_stitching.so.2.4.8;general;/usr/lib/arm-linux-gnueabihf/libopencv_photo.so.2.4.8;general;/usr/lib/arm-linux-gnueabihf/libopencv_ocl.so.2.4.8;general;/usr/lib/arm-linux-gnueabihf/libopencv_objdetect.so.2.4.8;general;/usr/lib/arm-linux-gnueabihf/libopencv_ml.so.2.4.8;general;/usr/lib/arm-linux-gnueabihf/libopencv_legacy.so.2.4.8;general;/usr/lib/arm-linux-gnueabihf/libopencv_imgproc.so.2.4.8;general;/usr/lib/arm-linux-gnueabihf/libopencv_highgui.so.2.4.8;general;/usr/lib/arm-linux-gnueabihf/libopencv_gpu.so.2.4.8;general;/usr/lib/arm-linux-gnueabihf/libopencv_flann.so.2.4.8;general;/usr/lib/arm-linux-gnueabihf/libopencv_features2d.so.2.4.8;general;/usr/lib/arm-linux-gnueabihf/libopencv_core.so.2.4.8;general;/usr/lib/arm-linux-gnueabihf/libopencv_contrib.so.2.4.8;general;/usr/lib/arm-linux-gnueabihf/libopencv_calib3d.so.2.4.8;general;/opt/ros/indigo/lib/libeigen_conversions.so;general;/opt/ros/indigo/lib/liborocos-kdl.so.1.3.0;general;/opt/ros/indigo/lib/libroscpp_serialization.so;general;/opt/ros/indigo/lib/librostime.so;general;/usr/lib/arm-linux-gnueabihf/libboost_date_time.so;general;/opt/ros/indigo/lib/libcpp_common.so;general;/usr/lib/arm-linux-gnueabihf/libboost_system.so;general;/usr/lib/arm-linux-gnueabihf/libboost_thread.so;general;/usr/lib/arm-linux-gnueabihf/libpthread.so;general;/usr/lib/arm-linux-gnueabihf/libconsole_bridge.so;
+
+//Value Computed by CMake
+localizer_SOURCE_DIR:STATIC=/home/odroid/catkin_ws/src/localizer
 
 //The directory containing a CMake configuration file for message_filters.
 message_filters_DIR:PATH=/opt/ros/indigo/share/message_filters/cmake

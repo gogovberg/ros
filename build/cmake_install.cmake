@@ -117,14 +117,14 @@ ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unsp
 IF(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   INCLUDE("/home/odroid/catkin_ws/build/gtest/cmake_install.cmake")
-  INCLUDE("/home/odroid/catkin_ws/build/evaluation_tasks/cmake_install.cmake")
   INCLUDE("/home/odroid/catkin_ws/build/beginner_tutorials/cmake_install.cmake")
   INCLUDE("/home/odroid/catkin_ws/build/detection_msgs/cmake_install.cmake")
   INCLUDE("/home/odroid/catkin_ws/build/dlib_detector/cmake_install.cmake")
+  INCLUDE("/home/odroid/catkin_ws/build/evaluation_tasks/cmake_install.cmake")
   INCLUDE("/home/odroid/catkin_ws/build/exercise4/cmake_install.cmake")
+  INCLUDE("/home/odroid/catkin_ws/build/localizer/cmake_install.cmake")
   INCLUDE("/home/odroid/catkin_ws/build/opencv_detector/cmake_install.cmake")
   INCLUDE("/home/odroid/catkin_ws/build/recognition_msgs/cmake_install.cmake")
-  INCLUDE("/home/odroid/catkin_ws/build/exercise3/cmake_install.cmake")
   INCLUDE("/home/odroid/catkin_ws/build/exercise6/cmake_install.cmake")
 
 ENDIF(NOT CMAKE_INSTALL_LOCAL_ONLY)

@@ -234,6 +234,20 @@ dynamic_reconfigure_generate_messages_py/fast:
 .PHONY : dynamic_reconfigure_generate_messages_py/fast
 
 # Convenience name for target.
+exercise6/CMakeFiles/find_cylinder.dir/rule:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 exercise6/CMakeFiles/find_cylinder.dir/rule
+.PHONY : exercise6/CMakeFiles/find_cylinder.dir/rule
+
+# Convenience name for target.
+find_cylinder: exercise6/CMakeFiles/find_cylinder.dir/rule
+.PHONY : find_cylinder
+
+# fast build rule for target.
+find_cylinder/fast:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f exercise6/CMakeFiles/find_cylinder.dir/build.make exercise6/CMakeFiles/find_cylinder.dir/build
+.PHONY : find_cylinder/fast
+
+# Convenience name for target.
 exercise6/CMakeFiles/find_plane.dir/rule:
 	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 exercise6/CMakeFiles/find_plane.dir/rule
 .PHONY : exercise6/CMakeFiles/find_plane.dir/rule
@@ -345,6 +359,30 @@ topic_tools_generate_messages_py/fast:
 	cd /home/odroid/catkin_ws/build && $(MAKE) -f exercise6/CMakeFiles/topic_tools_generate_messages_py.dir/build.make exercise6/CMakeFiles/topic_tools_generate_messages_py.dir/build
 .PHONY : topic_tools_generate_messages_py/fast
 
+src/find_cylinder.o: src/find_cylinder.cpp.o
+.PHONY : src/find_cylinder.o
+
+# target to build an object file
+src/find_cylinder.cpp.o:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f exercise6/CMakeFiles/find_cylinder.dir/build.make exercise6/CMakeFiles/find_cylinder.dir/src/find_cylinder.cpp.o
+.PHONY : src/find_cylinder.cpp.o
+
+src/find_cylinder.i: src/find_cylinder.cpp.i
+.PHONY : src/find_cylinder.i
+
+# target to preprocess a source file
+src/find_cylinder.cpp.i:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f exercise6/CMakeFiles/find_cylinder.dir/build.make exercise6/CMakeFiles/find_cylinder.dir/src/find_cylinder.cpp.i
+.PHONY : src/find_cylinder.cpp.i
+
+src/find_cylinder.s: src/find_cylinder.cpp.s
+.PHONY : src/find_cylinder.s
+
+# target to generate assembly for a file
+src/find_cylinder.cpp.s:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f exercise6/CMakeFiles/find_cylinder.dir/build.make exercise6/CMakeFiles/find_cylinder.dir/src/find_cylinder.cpp.s
+.PHONY : src/find_cylinder.cpp.s
+
 src/find_plane.o: src/find_plane.cpp.o
 .PHONY : src/find_plane.o
 
@@ -430,6 +468,7 @@ help:
 	@echo "... dynamic_reconfigure_generate_messages_lisp"
 	@echo "... dynamic_reconfigure_generate_messages_py"
 	@echo "... edit_cache"
+	@echo "... find_cylinder"
 	@echo "... find_plane"
 	@echo "... install"
 	@echo "... install/local"
@@ -444,6 +483,9 @@ help:
 	@echo "... topic_tools_generate_messages_cpp"
 	@echo "... topic_tools_generate_messages_lisp"
 	@echo "... topic_tools_generate_messages_py"
+	@echo "... src/find_cylinder.o"
+	@echo "... src/find_cylinder.i"
+	@echo "... src/find_cylinder.s"
 	@echo "... src/find_plane.o"
 	@echo "... src/find_plane.i"
 	@echo "... src/find_plane.s"

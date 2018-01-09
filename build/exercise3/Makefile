@@ -163,48 +163,6 @@ map_goals/fast:
 	cd /home/odroid/catkin_ws/build && $(MAKE) -f exercise3/CMakeFiles/map_goals.dir/build.make exercise3/CMakeFiles/map_goals.dir/build
 .PHONY : map_goals/fast
 
-# Convenience name for target.
-exercise3/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 exercise3/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
-.PHONY : exercise3/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-nav_msgs_generate_messages_cpp: exercise3/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
-.PHONY : nav_msgs_generate_messages_cpp
-
-# fast build rule for target.
-nav_msgs_generate_messages_cpp/fast:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f exercise3/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build.make exercise3/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build
-.PHONY : nav_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-exercise3/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 exercise3/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
-.PHONY : exercise3/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-nav_msgs_generate_messages_lisp: exercise3/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
-.PHONY : nav_msgs_generate_messages_lisp
-
-# fast build rule for target.
-nav_msgs_generate_messages_lisp/fast:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f exercise3/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build.make exercise3/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build
-.PHONY : nav_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-exercise3/CMakeFiles/nav_msgs_generate_messages_py.dir/rule:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 exercise3/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
-.PHONY : exercise3/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-nav_msgs_generate_messages_py: exercise3/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
-.PHONY : nav_msgs_generate_messages_py
-
-# fast build rule for target.
-nav_msgs_generate_messages_py/fast:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f exercise3/CMakeFiles/nav_msgs_generate_messages_py.dir/build.make exercise3/CMakeFiles/nav_msgs_generate_messages_py.dir/build
-.PHONY : nav_msgs_generate_messages_py/fast
-
 src/map_goals.o: src/map_goals.cpp.o
 .PHONY : src/map_goals.o
 
@@ -241,9 +199,6 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... map_goals"
-	@echo "... nav_msgs_generate_messages_cpp"
-	@echo "... nav_msgs_generate_messages_lisp"
-	@echo "... nav_msgs_generate_messages_py"
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... src/map_goals.o"

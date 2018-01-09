@@ -164,172 +164,60 @@ cliff_listener/fast:
 .PHONY : cliff_listener/fast
 
 # Convenience name for target.
-evaluation_tasks/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 evaluation_tasks/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
-.PHONY : evaluation_tasks/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+evaluation_tasks/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 evaluation_tasks/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
+.PHONY : evaluation_tasks/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-geometry_msgs_generate_messages_cpp: evaluation_tasks/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
-.PHONY : geometry_msgs_generate_messages_cpp
+nav_msgs_generate_messages_cpp: evaluation_tasks/CMakeFiles/nav_msgs_generate_messages_cpp.dir/rule
+.PHONY : nav_msgs_generate_messages_cpp
 
 # fast build rule for target.
-geometry_msgs_generate_messages_cpp/fast:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f evaluation_tasks/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make evaluation_tasks/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
-.PHONY : geometry_msgs_generate_messages_cpp/fast
+nav_msgs_generate_messages_cpp/fast:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f evaluation_tasks/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build.make evaluation_tasks/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build
+.PHONY : nav_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
-evaluation_tasks/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 evaluation_tasks/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-.PHONY : evaluation_tasks/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+evaluation_tasks/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 evaluation_tasks/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
+.PHONY : evaluation_tasks/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-geometry_msgs_generate_messages_lisp: evaluation_tasks/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
-.PHONY : geometry_msgs_generate_messages_lisp
+nav_msgs_generate_messages_lisp: evaluation_tasks/CMakeFiles/nav_msgs_generate_messages_lisp.dir/rule
+.PHONY : nav_msgs_generate_messages_lisp
 
 # fast build rule for target.
-geometry_msgs_generate_messages_lisp/fast:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f evaluation_tasks/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make evaluation_tasks/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
-.PHONY : geometry_msgs_generate_messages_lisp/fast
+nav_msgs_generate_messages_lisp/fast:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f evaluation_tasks/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build.make evaluation_tasks/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build
+.PHONY : nav_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
-evaluation_tasks/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 evaluation_tasks/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-.PHONY : evaluation_tasks/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+evaluation_tasks/CMakeFiles/nav_msgs_generate_messages_py.dir/rule:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 evaluation_tasks/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
+.PHONY : evaluation_tasks/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-geometry_msgs_generate_messages_py: evaluation_tasks/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
-.PHONY : geometry_msgs_generate_messages_py
+nav_msgs_generate_messages_py: evaluation_tasks/CMakeFiles/nav_msgs_generate_messages_py.dir/rule
+.PHONY : nav_msgs_generate_messages_py
 
 # fast build rule for target.
-geometry_msgs_generate_messages_py/fast:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f evaluation_tasks/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make evaluation_tasks/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
-.PHONY : geometry_msgs_generate_messages_py/fast
+nav_msgs_generate_messages_py/fast:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f evaluation_tasks/CMakeFiles/nav_msgs_generate_messages_py.dir/build.make evaluation_tasks/CMakeFiles/nav_msgs_generate_messages_py.dir/build
+.PHONY : nav_msgs_generate_messages_py/fast
 
 # Convenience name for target.
-evaluation_tasks/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 evaluation_tasks/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-.PHONY : evaluation_tasks/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+evaluation_tasks/CMakeFiles/new_goals.dir/rule:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 evaluation_tasks/CMakeFiles/new_goals.dir/rule
+.PHONY : evaluation_tasks/CMakeFiles/new_goals.dir/rule
 
 # Convenience name for target.
-roscpp_generate_messages_cpp: evaluation_tasks/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-.PHONY : roscpp_generate_messages_cpp
+new_goals: evaluation_tasks/CMakeFiles/new_goals.dir/rule
+.PHONY : new_goals
 
 # fast build rule for target.
-roscpp_generate_messages_cpp/fast:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f evaluation_tasks/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make evaluation_tasks/CMakeFiles/roscpp_generate_messages_cpp.dir/build
-.PHONY : roscpp_generate_messages_cpp/fast
-
-# Convenience name for target.
-evaluation_tasks/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 evaluation_tasks/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-.PHONY : evaluation_tasks/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_lisp: evaluation_tasks/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-.PHONY : roscpp_generate_messages_lisp
-
-# fast build rule for target.
-roscpp_generate_messages_lisp/fast:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f evaluation_tasks/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make evaluation_tasks/CMakeFiles/roscpp_generate_messages_lisp.dir/build
-.PHONY : roscpp_generate_messages_lisp/fast
-
-# Convenience name for target.
-evaluation_tasks/CMakeFiles/roscpp_generate_messages_py.dir/rule:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 evaluation_tasks/CMakeFiles/roscpp_generate_messages_py.dir/rule
-.PHONY : evaluation_tasks/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_py: evaluation_tasks/CMakeFiles/roscpp_generate_messages_py.dir/rule
-.PHONY : roscpp_generate_messages_py
-
-# fast build rule for target.
-roscpp_generate_messages_py/fast:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f evaluation_tasks/CMakeFiles/roscpp_generate_messages_py.dir/build.make evaluation_tasks/CMakeFiles/roscpp_generate_messages_py.dir/build
-.PHONY : roscpp_generate_messages_py/fast
-
-# Convenience name for target.
-evaluation_tasks/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 evaluation_tasks/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : evaluation_tasks/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: evaluation_tasks/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f evaluation_tasks/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make evaluation_tasks/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-evaluation_tasks/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 evaluation_tasks/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : evaluation_tasks/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: evaluation_tasks/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : rosgraph_msgs_generate_messages_lisp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f evaluation_tasks/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make evaluation_tasks/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-evaluation_tasks/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 evaluation_tasks/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-.PHONY : evaluation_tasks/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_py: evaluation_tasks/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-.PHONY : rosgraph_msgs_generate_messages_py
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_py/fast:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f evaluation_tasks/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make evaluation_tasks/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-.PHONY : rosgraph_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-evaluation_tasks/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 evaluation_tasks/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-.PHONY : evaluation_tasks/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_cpp: evaluation_tasks/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-.PHONY : std_msgs_generate_messages_cpp
-
-# fast build rule for target.
-std_msgs_generate_messages_cpp/fast:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f evaluation_tasks/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make evaluation_tasks/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
-.PHONY : std_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-evaluation_tasks/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 evaluation_tasks/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-.PHONY : evaluation_tasks/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_lisp: evaluation_tasks/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-.PHONY : std_msgs_generate_messages_lisp
-
-# fast build rule for target.
-std_msgs_generate_messages_lisp/fast:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f evaluation_tasks/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make evaluation_tasks/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-.PHONY : std_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-evaluation_tasks/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 evaluation_tasks/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-.PHONY : evaluation_tasks/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_py: evaluation_tasks/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-.PHONY : std_msgs_generate_messages_py
-
-# fast build rule for target.
-std_msgs_generate_messages_py/fast:
-	cd /home/odroid/catkin_ws/build && $(MAKE) -f evaluation_tasks/CMakeFiles/std_msgs_generate_messages_py.dir/build.make evaluation_tasks/CMakeFiles/std_msgs_generate_messages_py.dir/build
-.PHONY : std_msgs_generate_messages_py/fast
+new_goals/fast:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f evaluation_tasks/CMakeFiles/new_goals.dir/build.make evaluation_tasks/CMakeFiles/new_goals.dir/build
+.PHONY : new_goals/fast
 
 src/task_one/cliff_listener.o: src/task_one/cliff_listener.cpp.o
 .PHONY : src/task_one/cliff_listener.o
@@ -355,6 +243,30 @@ src/task_one/cliff_listener.cpp.s:
 	cd /home/odroid/catkin_ws/build && $(MAKE) -f evaluation_tasks/CMakeFiles/cliff_listener.dir/build.make evaluation_tasks/CMakeFiles/cliff_listener.dir/src/task_one/cliff_listener.cpp.s
 .PHONY : src/task_one/cliff_listener.cpp.s
 
+src/task_two/new_goals.o: src/task_two/new_goals.cpp.o
+.PHONY : src/task_two/new_goals.o
+
+# target to build an object file
+src/task_two/new_goals.cpp.o:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f evaluation_tasks/CMakeFiles/new_goals.dir/build.make evaluation_tasks/CMakeFiles/new_goals.dir/src/task_two/new_goals.cpp.o
+.PHONY : src/task_two/new_goals.cpp.o
+
+src/task_two/new_goals.i: src/task_two/new_goals.cpp.i
+.PHONY : src/task_two/new_goals.i
+
+# target to preprocess a source file
+src/task_two/new_goals.cpp.i:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f evaluation_tasks/CMakeFiles/new_goals.dir/build.make evaluation_tasks/CMakeFiles/new_goals.dir/src/task_two/new_goals.cpp.i
+.PHONY : src/task_two/new_goals.cpp.i
+
+src/task_two/new_goals.s: src/task_two/new_goals.cpp.s
+.PHONY : src/task_two/new_goals.s
+
+# target to generate assembly for a file
+src/task_two/new_goals.cpp.s:
+	cd /home/odroid/catkin_ws/build && $(MAKE) -f evaluation_tasks/CMakeFiles/new_goals.dir/build.make evaluation_tasks/CMakeFiles/new_goals.dir/src/task_two/new_goals.cpp.s
+.PHONY : src/task_two/new_goals.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -363,27 +275,22 @@ help:
 	@echo "... depend"
 	@echo "... cliff_listener"
 	@echo "... edit_cache"
-	@echo "... geometry_msgs_generate_messages_cpp"
-	@echo "... geometry_msgs_generate_messages_lisp"
-	@echo "... geometry_msgs_generate_messages_py"
 	@echo "... install"
 	@echo "... install/local"
 	@echo "... install/strip"
 	@echo "... list_install_components"
+	@echo "... nav_msgs_generate_messages_cpp"
+	@echo "... nav_msgs_generate_messages_lisp"
+	@echo "... nav_msgs_generate_messages_py"
+	@echo "... new_goals"
 	@echo "... rebuild_cache"
-	@echo "... roscpp_generate_messages_cpp"
-	@echo "... roscpp_generate_messages_lisp"
-	@echo "... roscpp_generate_messages_py"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
-	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... rosgraph_msgs_generate_messages_py"
-	@echo "... std_msgs_generate_messages_cpp"
-	@echo "... std_msgs_generate_messages_lisp"
-	@echo "... std_msgs_generate_messages_py"
 	@echo "... test"
 	@echo "... src/task_one/cliff_listener.o"
 	@echo "... src/task_one/cliff_listener.i"
 	@echo "... src/task_one/cliff_listener.s"
+	@echo "... src/task_two/new_goals.o"
+	@echo "... src/task_two/new_goals.i"
+	@echo "... src/task_two/new_goals.s"
 .PHONY : help
 
 

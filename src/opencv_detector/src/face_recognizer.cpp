@@ -28,6 +28,8 @@
 #include <geometry_msgs/QuaternionStamped.h>
 #include <geometry_msgs/Pose.h>
 
+#include <visualization_msgs/Marker.h>
+
 //#include "multiclass.h"
 
 using namespace std;
@@ -175,6 +177,26 @@ void FacesCallback(const detection_msgs::Detection::ConstPtr &msg)
 		face_rec.source = msg->source;
 		face_rec.label = label;
 		face_rec.confidence = msg->confidence;
+
+        visualization_msgs::Marker marker;
+        marker.header = msg->header;
+
+
+         /*
+
+        marker = Marker()
+        marker.header.stamp = detection.header.stamp
+        marker.header.frame_id = "/map"
+        marker.pose.position = newPoint.point
+        marker.pose.position.z = 0
+        marker.type = Marker.TEXT_VIEW_FACING
+        marker.action = Marker.ADD
+        marker.frame_locked = False
+        marker.lifetime = rospy.Duration.from_sec(1)
+        marker.id = self.marker_id_counter
+        marker.scale = Vector3(0.1, 0.1, 0.1)
+        marker.color = ColorRGBA(1, 0, 0, 1)
+         */
 		//face_rec.image = msg->image;
 
 		//ROS_INFO("I heard: x:[%d] y:[%d] label:[%s]", face_rec.x,face_rec.y,face_rec.label.c_str());
@@ -203,10 +225,12 @@ int main(int argc, char** argv)
     ros::NodeHandle n;
     ros::NodeHandle np("~");
     ros::NodeHandle pubn;
+
     np.param<string>("base_source", base_source, string(""));
     PrepareModel();
     ros::Subscriber sub = n.subscribe("/detection/faces", 10, FacesCallback);
     pub = pubn.advertise<detection_msgs::Detection>("/recognition/faces", 10);
+    pub_markers = pubn.advertise<visualization_msgs::Marker>( "/visualization/faces", 0 );
     ros::spin();
     return 0;
 }

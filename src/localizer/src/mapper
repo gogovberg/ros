@@ -34,13 +34,21 @@ class DetectionMapper():
         camera_info = None
         best_time = 100
 
+<<<<<<< HEAD
 	self.mutex.acquire()
+=======
+        self.mutex.acquire()
+>>>>>>> 660ca987210cb5320db18a2e181a519836f47e26
         for ci in self.camera_infos:
             time = abs(ci.header.stamp.to_sec() - detection.header.stamp.to_sec())
             if time < best_time:
                 camera_info = ci
                 best_time = time
+<<<<<<< HEAD
 	self.mutex.release()
+=======
+        self.mutex.release()
+>>>>>>> 660ca987210cb5320db18a2e181a519836f47e26
 
         if not camera_info or best_time > 1:
             return
@@ -87,7 +95,11 @@ class DetectionMapper():
         self.markers_pub.publish(self.markers)
 
     def __init__(self):
+<<<<<<< HEAD
 	self.mutex = Lock()
+=======
+        self.mutex = Lock()
+>>>>>>> 660ca987210cb5320db18a2e181a519836f47e26
         self.tf = TransformListener()
         self.markers = MarkerArray()
         self.marker_id_counter = 0

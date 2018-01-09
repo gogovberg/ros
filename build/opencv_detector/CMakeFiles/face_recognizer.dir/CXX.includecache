@@ -55,4 +55,6 @@ geometry_msgs/QuaternionStamped.h
 -
 geometry_msgs/Pose.h
 -
+visualization_msgs/Marker.h
+-
 
