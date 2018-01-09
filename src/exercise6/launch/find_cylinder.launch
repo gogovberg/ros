@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+
+    <node pkg="exercise6" type="find_cylinder" name="find_cylinder" output="screen">
+        <remap from="input" to="/camera/depth_registered/points"/>
+        <remap from="/exercise6/find_plane" to="plane"/>
+    </node>
+
+</launch>
