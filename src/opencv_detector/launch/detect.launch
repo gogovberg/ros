@@ -1,5 +1,6 @@
-<include file="$(find opencv_detector)/launch/facedetector.launch">
-	<arg name="image_topic" value="/camera/rgb/image_raw" />
-	<param name="time_path" value="$(find opencv_detector)/detectionTime.txt" />
-  </include>
-  
+<launch>
+	<include file="$(find opencv_detector)/launch/facedetector.launch">
+		<arg name="image_topic" value="/camera/rgb/image_raw" />
+		<param name="time_path" value="$(find opencv_detector)/detectionTime.txt" />
+	 </include>
+ </launch>

@@ -1,4 +1,6 @@
-<node pkg="opencv_detector" type="face_recognizer" name="face_recognizer" output="screen">
-	<param name="base_source" value="$(find opencv_detector)/data/face_data.csv" />
-	<param name="time_path" value="$(find opencv_detector)/recognitionTime.txt" />
-  </node>
+<launch>
+	<node pkg="opencv_detector" type="face_recognizer" name="face_recognizer" output="screen">
+		<param name="base_source" value="$(find opencv_detector)/data/face_data.csv" />
+		<param name="time_path" value="$(find opencv_detector)/recognitionTime.txt" />
+	 </node>
+</launch>
