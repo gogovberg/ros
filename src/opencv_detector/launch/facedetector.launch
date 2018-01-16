@@ -1,5 +1,5 @@
 <launch>
-  <arg name="image_topic"/>
+  <arg name="image_topic" value="/camera/rgb/image_raw" />
   <arg name="detection_topic" default="/facedetector/faces" />
   <arg name="toggle_topic"  default="/facedetector/toggle" />
   
@@ -7,5 +7,6 @@
     <remap from="camera" to="$(arg image_topic)" />
 	<param name="detector_file" value="$(find opencv_detector)/data/haarcascade_face.xml"/>
     <param name="show_cv_window" type="bool" value="false" />
+    <param name="time_path" value="$(find opencv_detector)/detectionTime.txt" />
   </node>
 </launch>
