@@ -1,0 +1,4 @@
+<include file="$(find opencv_detector)/launch/facedetector.launch">
+	<arg name="image_topic" value="/camera/rgb/image_raw" />
+  </include>
+  

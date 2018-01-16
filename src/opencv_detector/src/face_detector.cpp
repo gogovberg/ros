@@ -9,9 +9,15 @@
 #include <opencv2/objdetect/objdetect.hpp>
 #include <detection_msgs/Detection.h>
 #include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <vector>
 #include <stdio.h>
 
 static const std::string OPENCV_WINDOW = "Image window";
+
+using namespace std;
+using namespace cv;
 
 image_transport::Subscriber sub;
 image_transport::Publisher pub;
@@ -24,8 +30,12 @@ double image_scale;
 bool show_window;
 int message_counter;
 
+ofstream myfile;
+
 void chatterCallback(const sensor_msgs::Image::ConstPtr& msg)
 {
+	myfile.open ("/home/odroid/catkin_ws/src/opencv_detector/src/DetectionTime.txt", ios::out | ios::binary | ios::app);
+	const clock_t begin_time = clock();
 	cv_bridge::CvImagePtr cv_ptr;
 	std::vector<cv::Rect> faces;
 	std::vector<cv::Mat> detections;
@@ -101,6 +111,20 @@ void chatterCallback(const sensor_msgs::Image::ConstPtr& msg)
 
     // Output modified video stream
     pub.publish(cv_ptr->toImageMsg());
+
+	try
+	{
+		if(myfile.is_open())
+	    {
+	   		 ROS_INFO("Writing time to file.");
+	    		//string result = std::to_string(;
+	    		myfile << float( clock () - begin_time ) /  CLOCKS_PER_SEC << endl;
+	    		myfile.close();
+		}
+	} catch (cv::Exception& e) {
+
+        ROS_ERROR("Exception: %s \n Line number: %d",e.what(), e.line);
+    }
 	
 }
 int main(int argc, char **argv)
