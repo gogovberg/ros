@@ -21,7 +21,6 @@
 
 #include "std_msgs/String.h"
 #include <detection_msgs/Detection.h>
-#include <recognition_msgs/Recognition.h>
 #include <geometry_msgs/Pose.h>
 #include <geometry_msgs/PoseStamped.h>
 #include <geometry_msgs/Quaternion.h>
@@ -36,6 +35,7 @@ using namespace std;
 using namespace cv;
 
 string base_source;
+string time_path;
 int count_pics=0;
 
 Ptr<FaceRecognizer> model = createFisherFaceRecognizer();
@@ -114,7 +114,6 @@ void PrepareModel()
 		  // Quit if there are not enough images for this demo.
 		if(images.size() <= 1) {
 			ROS_INFO("This demo needs at least 2 images to work. Please add more images to your data set!");
-
 		}
 		else
 		{
@@ -133,7 +132,7 @@ void FacesCallback(const detection_msgs::Detection::ConstPtr &msg)
 {   
 	try
 	{
-		myfile.open ("/home/odroid/catkin_ws/src/opencv_detector/src/Time.txt", ios::out | ios::binary | ios::app);
+		myfile.open (time_path.c_str(), ios::out | ios::binary | ios::app);
         	const clock_t begin_time = clock();
 		Mat gray_detection;
 		Size size(100,100);
@@ -227,6 +226,7 @@ int main(int argc, char** argv)
     ros::NodeHandle pubn;
 
     np.param<string>("base_source", base_source, string(""));
+    np.param<string>("time_path", time_path, string(""));
     PrepareModel();
     ros::Subscriber sub = n.subscribe("/detection/faces", 10, FacesCallback);
     pub = pubn.advertise<detection_msgs::Detection>("/recognition/faces", 10);

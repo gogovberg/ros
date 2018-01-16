@@ -24,7 +24,9 @@ image_transport::Publisher pub;
 ros::Publisher pubDet;
 
 cv::CascadeClassifier face_cascade;
-std::string data_path;
+
+string data_path;
+string time_path;
 
 double image_scale;
 bool show_window;
@@ -34,7 +36,7 @@ ofstream myfile;
 
 void chatterCallback(const sensor_msgs::Image::ConstPtr& msg)
 {
-	myfile.open ("/home/odroid/catkin_ws/src/opencv_detector/src/DetectionTime.txt", ios::out | ios::binary | ios::app);
+	myfile.open (time_path.c_str(), ios::out | ios::binary | ios::app);
 	const clock_t begin_time = clock();
 	cv_bridge::CvImagePtr cv_ptr;
 	std::vector<cv::Rect> faces;
@@ -131,6 +133,7 @@ int main(int argc, char **argv)
 {
 	ros::init(argc, argv, "listener");
 	ros::NodeHandle nh;
+	ros::NodeHandle np("~");
 	image_transport::ImageTransport it(nh);
 	image_scale=0.0;
 	message_counter=0;
@@ -139,7 +142,8 @@ int main(int argc, char **argv)
 	
 	nh.getParam("/facedetector/detector_file",data_path);
 	nh.getParam("/facedetector/show_cv_window",show_window);
-	
+	np.param<string>("time_path", time_path, string(""));
+
 	if( !face_cascade.load(data_path) ){ printf("--(!)Error loading face cascade\n"); return -1; };
 	sub = it.subscribe("camera", 1, chatterCallback);
 	pub = it.advertise("detections", 10);
