@@ -41,7 +41,8 @@ typedef pcl::PointXYZ PointT;
 typedef pcl::PointCloud<PointT> CloudT;
 
 double downsample_leaf_size;
-string path;
+string time_path;
+
 ros::Publisher pub_cylinders;
 ros::Publisher pub_above_plane;
 ros::Publisher pub_ground_plane;
@@ -53,7 +54,7 @@ void callbackPlane(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
   
   try
     {
-      myfile.open (path.c_str(), ios::out | ios::binary | ios::app);
+      myfile.open (time_path.c_str(), ios::out | ios::binary | ios::app);
 
       const clock_t begin_time = clock();
       // Container for original & filtered data
@@ -242,14 +243,16 @@ int main (int argc, char** argv) {
   // Initialize ROS
   ros::init (argc, argv, "find_plane");
   ros::NodeHandle nh;
+  ros::NodeHandle np("~");
+  
   downsample_leaf_size = 0.01; // 1cm
-  path = "/home/team_lambda/catkin_ws/src/exercise6/cylinderTime.txt";
+ 
 
   nh.getParam("downsample_leaf_size", downsample_leaf_size);
-  nh.getParam("/find_plane/file_path",path);
+  np.param<string>("time_path", time_path, string(""));
 
   ROS_INFO_STREAM("obstacle detection: using a leaf size of '" << downsample_leaf_size << "' m for downsampling.");
-  ROS_INFO_STREAM("File path for writing time elapsed " << path);
+  ROS_INFO_STREAM("File path for writing time elapsed " << time_path);
   
   ros::Subscriber sub = nh.subscribe ("input", 1, callbackPlane);
 
