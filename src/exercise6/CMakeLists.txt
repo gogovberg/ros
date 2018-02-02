@@ -64,4 +64,6 @@ add_executable (cloud_forwarder src/forwarder.cpp)
 add_executable (cloud_voxelgrid src/voxelgrid.cpp)
 add_executable (find_plane src/find_plane.cpp)
 add_executable (find_cylinder src/find_cylinder.cpp)
+add_executable (cylinder_subscriber src/cylinder_subscriber.cpp)
+
 

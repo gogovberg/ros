@@ -28,3 +28,6 @@ target_link_libraries(face_recognizer ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
 add_executable(face_detector src/face_detector.cpp) 
 target_link_libraries(face_detector ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+
+add_executable(face_subscriber src/face_subscriber.cpp) 
+target_link_libraries(face_subscriber ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})

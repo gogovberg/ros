@@ -1,0 +1,5 @@
+<launch>
+	<node pkg="opencv_detector" type="face_recognizer" name="face_face_subscriber" output="screen">
+		
+	 </node>
+</launch>
