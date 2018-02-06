@@ -1,4 +1,4 @@
-#include <iostream>
+ #include <iostream>
 #include <fstream>
 #include <boost/shared_ptr.hpp>
 
@@ -16,10 +16,12 @@ bool isChange = false;
 double cliffThreshold = 1800; 
 double drive = 0;
 double turn = 1;
-
+string time_path;
+ofstream myfile;
 void callbackCliff(const create_node::TurtlebotSensorState& cliff_msg)
 { 
-  
+  myfile.open (time_path.c_str(), ios::out | ios::binary | ios::app);
+  const clock_t begin_time = clock();
   try
     {
   	  base_cmd.linear.y = 0;
@@ -33,7 +35,7 @@ void callbackCliff(const create_node::TurtlebotSensorState& cliff_msg)
       
       ROS_INFO("Cliff left signal: %d",cliff_msg.cliff_left_signal);
       ROS_INFO("Cliff front left signal: %d",cliff_msg.cliff_front_left_signal);
- 	  ROS_INFO("Cliff front right signal: %d",cliff_msg.cliff_front_right_signal);
+ 	    ROS_INFO("Cliff front right signal: %d",cliff_msg.cliff_front_right_signal);
       ROS_INFO("Cliff right signal: %d",cliff_msg.cliff_right_signal);
       
      
@@ -87,6 +89,19 @@ void callbackCliff(const create_node::TurtlebotSensorState& cliff_msg)
   {
       ROS_ERROR("Error occured: %s ", e.what());
   }
+  try
+  {
+  if(myfile.is_open())
+    {
+       ROS_INFO("Writing time to file.");
+        //string result = std::to_string(;
+        myfile << float( clock () - begin_time ) /  CLOCKS_PER_SEC << endl;
+        myfile.close();
+  }
+  } catch (ros::Exception &e) {
+
+        ROS_ERROR("Error occured: %s ", e.what());
+    }
 
 }
 
@@ -95,9 +110,13 @@ int main (int argc, char** argv) {
   // Initialize ROS
   ros::init (argc, argv, "task_one");
   ros::NodeHandle nh;
+  
+  ros::NodeHandle np("~");
+  np.param<string>("time_path", time_path, string(""));
   // Create a ROS subscriber for the input point cloud
   ros::Subscriber sub = nh.subscribe ("/mobile_base/sensors/core", 1, callbackCliff);
   ros::Publisher pub = nh.advertise<geometry_msgs::Twist>("/cmd_vel_mux/input/teleop", 1);
+  ROS_INFO_STREAM("File path for writing time elapsed " << time_path);
   // Spin
   while(ros::ok){
     pub.publish(base_cmd);
