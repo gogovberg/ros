@@ -25,7 +25,7 @@ ros::Subscriber map_sub;
 ros::Subscriber baseStatus_sub;
 bool isStart=true;
 ofstream myfile;
-
+string time_path;
 clock_t begin_time;
 time_t start,end;
 
@@ -83,16 +83,16 @@ void mapCallback(const nav_msgs::OccupancyGridConstPtr& msg_map) {
 }
 void baseStatusCallback(const actionlib_msgs::GoalStatusArray::ConstPtr &msg)
 {
-	bool hasActiveGoal = false;
+    bool hasActiveGoal = false;
     for (int i=0; i<msg->status_list.size(); i++)
     {
-    	//ROS_INFO("goal status: %d",msg->status_list[i].status);
         if (msg->status_list[i].status != msg->status_list[i].SUCCEEDED)
         {
             hasActiveGoal = true;
         }
     }
     if (!hasActiveGoal && !isStart)
+
     {
     	 if(myfile.is_open())
 	     {
@@ -112,7 +112,7 @@ void baseStatusCallback(const actionlib_msgs::GoalStatusArray::ConstPtr &msg)
 			goalQeue.pop();
 			if(!myfile.is_open())
 			{
-				myfile.open ("/home/team_lambda/catkin_ws/src/evaluation_tasks/Time.txt", ios::out | ios::binary | ios::app);
+				myfile.open (time_path.c_str(), ios::out | ios::binary | ios::app);
 			}
 		}
     }
@@ -131,7 +131,7 @@ void mouseCallback(int event, int x, int y, int, void* data) {
 		return;
 	}
 
-    ROS_INFO("Moving to (x: %d, y: %d)", x, y);
+        ROS_INFO("Moving to (x: %d, y: %d)", x, y);
 
 	tf::Point pt((float)x * map_resolution, (float)y * map_resolution, 0.0);
 	tf::Point transformed = map_transform * pt;
@@ -150,7 +150,7 @@ void mouseCallback(int event, int x, int y, int, void* data) {
 
 	 if(!myfile.is_open())
 	 {
-		myfile.open ("/home/team_lambda/catkin_ws/src/evaluation_tasks/Time.txt", ios::out | ios::binary | ios::app);
+		myfile.open (time_path.c_str(), ios::out | ios::binary | ios::app);
 		time (&start);
 	 }
 
@@ -211,28 +211,30 @@ void initGoals()
 int main(int argc, char** argv) {
 
 	initGoals();
-    ros::init(argc, argv, "map_goals");
-    ros::NodeHandle n;
+	ros::init(argc, argv, "map_goals");
+	ros::NodeHandle n;
+	ros::NodeHandle np("~");
+	np.param<string>("time_path", time_path, string(""));
 
-    map_sub = n.subscribe("map", 10, &mapCallback);
+	map_sub = n.subscribe("map", 10, &mapCallback);
 	goal_pub = n.advertise<geometry_msgs::PoseStamped>("goal", 10);
 	baseStatus_sub = n.subscribe("/move_base/status", 1, &baseStatusCallback);
-    namedWindow("Map");
+	namedWindow("Map");
 
-    setMouseCallback("Map", mouseCallback, NULL);
+	setMouseCallback("Map", mouseCallback, NULL);
 
-	myfile.open ("/home/team_lambda/catkin_ws/src/evaluation_tasks/Time.txt", ios::out | ios::binary | ios::app);
+	myfile.open (time_path.c_str(), ios::out | ios::binary | ios::app);
 	myfile << "NEW ITERATION"<< endl;
 	myfile.close();
-    begin_time = clock();
-    while(ros::ok()) {
+	begin_time = clock();
+	while(ros::ok()) {
 
-        if (!cv_map.empty()) imshow("Map", cv_map);
+		if (!cv_map.empty()) imshow("Map", cv_map);
 
-        waitKey(30);
+		waitKey(30);
 
-        ros::spinOnce();
-    }
+		ros::spinOnce();
+	}
     return 0;
 
 }

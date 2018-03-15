@@ -1,8 +1,8 @@
+<?xml version="1.0"?>
 <launch>
-
   <node pkg="evaluation_tasks" type="new_goals" name="new_goals" output="screen">
       <remap from="goal" to="/move_base_simple/goal" />
+      <param name="time_path" value="$(find evaluation_tasks)/new_goals.txt" />
   </node>
-
 </launch>
 
