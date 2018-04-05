@@ -24,11 +24,65 @@ ros::Publisher goal_pub;
 ros::Subscriber map_sub;
 ros::Subscriber baseStatus_sub;
 bool isStart=true;
+bool isInit=true;
 ofstream myfile;
 string time_path;
 clock_t begin_time;
 time_t start,end;
 
+void initGoals()
+{
+	geometry_msgs::PoseStamped goal1;
+	goal1.header.frame_id = "map";
+	goal1.pose.position.x =  1.13317108154;
+	goal1.pose.position.y =  4.44824743271;
+	goal1.pose.orientation.z = 0.00261997224122;
+	goal1.pose.orientation.w = 0.999996567867;
+
+	geometry_msgs::PoseStamped goal2;
+	goal2.header.frame_id = "map";
+	goal2.pose.position.x =  0.0433881282806;
+	goal2.pose.position.y =  0.0186009407043;
+	goal2.pose.orientation.z = 0.603385192068;
+	goal2.pose.orientation.w = 0.797449879299;
+	
+	geometry_msgs::PoseStamped goal3;
+	goal3.header.frame_id = "map";
+	goal3.pose.position.x =  -0.00588625669479;
+	goal3.pose.position.y = 2.66314172745;
+	goal3.pose.orientation.w = 0.930516998186;
+	goal3.pose.orientation.w = -0.366248707967;
+	
+	geometry_msgs::PoseStamped goal4;
+	goal4.header.frame_id = "map";
+	goal4.pose.position.x = -0.209277927876;
+	goal4.pose.position.y = 4.13455677032;
+	goal4.pose.orientation.z = -0.0591697106937;
+	goal4.pose.orientation.w = 0.998247937807;
+
+	geometry_msgs::PoseStamped goal5;
+	goal5.header.frame_id = "map";
+	goal5.pose.position.x =  1.3844742775;
+	goal5.pose.position.y = 2.90182113647;
+	goal5.pose.orientation.z = 0.999664082854;
+	goal5.pose.orientation.w = 0.0259175896255;
+
+	geometry_msgs::PoseStamped goal6;
+	goal6.header.frame_id = "map";
+	goal6.pose.position.x = 1.01809358597;
+	goal6.pose.position.y = 1.23203372955;
+	goal6.pose.orientation.z = -0.701880569368;
+	goal6.pose.orientation.w = 0.712294648544;
+	
+	
+	goalQeue.push(goal1);
+	goalQeue.push(goal2);
+	goalQeue.push(goal3);
+	goalQeue.push(goal4);
+	goalQeue.push(goal5);
+	goalQeue.push(goal6);
+	
+}
 
 void mapCallback(const nav_msgs::OccupancyGridConstPtr& msg_map) {
     int size_x = msg_map->info.width;
@@ -91,23 +145,33 @@ void baseStatusCallback(const actionlib_msgs::GoalStatusArray::ConstPtr &msg)
             hasActiveGoal = true;
         }
     }
-    if (!hasActiveGoal && !isStart)
+    if (!hasActiveGoal & !isInit)
 
     {
     	 if(myfile.is_open())
 	     {
-	        ROS_INFO("Writing time to file.");
-	        time_t end;
-	        time (&end);
-	        myfile << difftime (end,start) << endl;
-	        myfile.close();
+		
+		if(isStart)
+		{
+			isStart=false;
+			time (&start);
+		}
+		else
+		{
+			ROS_INFO("Writing time to file.");
+			time_t end;
+			time (&end);
+			myfile << difftime (end,start) << endl;
+			myfile.close();	
+		}
+		
 	     }
 		if(!goalQeue.empty() )
 		{
 			geometry_msgs::PoseStamped goal;
 			goal = goalQeue.front();
 			goal.header.stamp = ros::Time::now();
-		    ROS_INFO("Moving to goal pose (x: %f, y: %f)", goal.pose.position.x, goal.pose.position.y);
+		    	ROS_INFO("Moving to goal pose (x: %f, y: %f)", goal.pose.position.x, goal.pose.position.y);
 			goal_pub.publish(goal);
 			goalQeue.pop();
 			if(!myfile.is_open())
@@ -115,8 +179,14 @@ void baseStatusCallback(const actionlib_msgs::GoalStatusArray::ConstPtr &msg)
 				myfile.open (time_path.c_str(), ios::out | ios::binary | ios::app);
 			}
 		}
-    }
-
+		else{
+			isInit=true;
+			initGoals();
+			myfile.open (time_path.c_str(), ios::out | ios::binary | ios::app);
+			myfile << "NEW ITERATION"<< endl;
+			myfile.close();
+		}
+	}
 }
 
 void mouseCallback(int event, int x, int y, int, void* data) {
@@ -138,76 +208,22 @@ void mouseCallback(int event, int x, int y, int, void* data) {
 
 	geometry_msgs::PoseStamped goal;
 	goal.header.frame_id = "map";
-	goal.pose.orientation.w = 1;
-	goal.pose.position.x = 2.950000;
-	goal.pose.position.y = 0.600000;
-	//goal.pose.position.x = transformed.x();
-	//goal.pose.position.y = -transformed.y();
+	goal.pose.position.x = 1.01809358597;
+	goal.pose.position.y = 1.23203372955;
+	goal.pose.orientation.z = -0.701880569368;
+	goal.pose.orientation.w = 0.712294648544;
 	goal.header.stamp = ros::Time::now();
-	isStart=false;	
+	isStart=true;
+	isInit=false;
+	ROS_INFO("Moving to start positio (x: %f, y: %f)", goal.pose.position.x, goal.pose.position.y);
 	
-	 ROS_INFO("Moving to goal pose (x: %f, y: %f)", goal.pose.position.x, goal.pose.position.y);
-
 	 if(!myfile.is_open())
 	 {
 		myfile.open (time_path.c_str(), ios::out | ios::binary | ios::app);
-		time (&start);
 	 }
-
 	goal_pub.publish(goal);
 }
-void initGoals()
-{
-	geometry_msgs::PoseStamped goal1;
-	goal1.header.frame_id = "map";
-	goal1.pose.orientation.w = 1;
-	goal1.pose.position.x =  1.190000;
-	goal1.pose.position.y = -0.350000;
-	
-	geometry_msgs::PoseStamped goal2;
-	goal2.header.frame_id = "map";
-	goal2.pose.orientation.w = 1;
-	goal2.pose.position.x = 3.050000;
-	goal2.pose.position.y = 0.700000;
-	
-	geometry_msgs::PoseStamped goal3;
-	goal3.header.frame_id = "map";
-	goal3.pose.orientation.w = 1;
-	goal3.pose.position.x =  3.050000;
-	goal3.pose.position.y = -1.500000;
-	
-	geometry_msgs::PoseStamped goal4;
-	goal4.header.frame_id = "map";
-	goal4.pose.orientation.w = 1;
-	goal4.pose.position.x = 1.550000;
-	goal4.pose.position.y = 0.700000;
-	
-	geometry_msgs::PoseStamped goal5;
-	goal5.header.frame_id = "map";
-	goal5.pose.orientation.w = 1;
-	goal5.pose.position.x =  2.850000;
-	goal5.pose.position.y = -0.850000;
 
-	geometry_msgs::PoseStamped goal6;
-	goal6.header.frame_id = "map";
-	goal6.pose.orientation.w = 1;
-	goal6.pose.position.x =  1.550000;
-	goal6.pose.position.y = -1.550000;
-	
-	geometry_msgs::PoseStamped goal7;
-	goal7.header.frame_id = "map";
-	goal7.pose.orientation.w = 1;
-	goal7.pose.position.x =  2.950000;
-	goal7.pose.position.y =  0.600000;
-	
-	//goalQeue.push(goal1);
-	//goalQeue.push(goal2);
-	goalQeue.push(goal3);
-	goalQeue.push(goal4);
-	goalQeue.push(goal5);
-	goalQeue.push(goal6);
-	goalQeue.push(goal7);
-}
 int main(int argc, char** argv) {
 
 	initGoals();
@@ -217,7 +233,7 @@ int main(int argc, char** argv) {
 	np.param<string>("time_path", time_path, string(""));
 
 	map_sub = n.subscribe("map", 10, &mapCallback);
-	goal_pub = n.advertise<geometry_msgs::PoseStamped>("goal", 10);
+	goal_pub = n.advertise<geometry_msgs::PoseStamped>("/move_base_simple/goal", 10);
 	baseStatus_sub = n.subscribe("/move_base/status", 1, &baseStatusCallback);
 	namedWindow("Map");
 
